@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123c49">
+  <title>Word Hunter: The Lost Words | Taita's English Envik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="game-page">
+    <header class="top-bar">
+      <a class="home-button" href="../../index.html" aria-label="Return to the games">
+        <span aria-hidden="true">←</span>
+        <span>Home</span>
+      </a>
+
+      <div class="game-brand" aria-label="Word Hunter The Lost Words">
+        <span class="brand-emblem" aria-hidden="true">🔎</span>
+        <span class="brand-copy">
+          <strong>Word Hunter</strong>
+          <small>The Lost Words</small>
+        </span>
+      </div>
+
+      <div class="top-actions">
+        <button class="top-button" id="instructionsButton" type="button">
+          <span aria-hidden="true">?</span>
+          <span>Как играть</span>
+        </button>
+        <button class="top-button sound-button" id="soundButton" type="button" aria-pressed="true">
+          <span id="soundIcon" aria-hidden="true">🔊</span>
+          <span id="soundLabel">Sound ON</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="game-shell">
+      <section class="game-heading" aria-labelledby="gameTitle">
+        <span class="heading-kicker">A2 Hidden-Object Adventure</span>
+        <h1 id="gameTitle">Word Hunter <span>The Lost Words</span></h1>
+        <p>A magical storm has scattered English words across the Enchanted Valley. Search every scene and restore the collection.</p>
+      </section>
+
+      <section class="hud" aria-label="Game status">
+        <div class="hud-item lives-item">
+          <span class="hud-icon" aria-hidden="true">❤️</span>
+          <span><small>Lives</small><strong id="livesDisplay" aria-live="polite"></strong></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-icon" aria-hidden="true">⭐</span>
+          <span><small>Score</small><strong id="scoreDisplay">0</strong></span>
+        </div>
+        <div class="hud-item combo-item" id="comboItem">
+          <span class="hud-icon" aria-hidden="true">🔥</span>
+          <span><small>Combo</small><strong id="comboDisplay">x1</strong></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-icon" aria-hidden="true">🔎</span>
+          <span><small>Found</small><strong><span id="foundDisplay">0</span> / 12</strong></span>
+        </div>
+      </section>
+
+      <nav class="location-progress" id="locationProgress" aria-label="Location progress"></nav>
+
+      <div class="game-layout">
+        <section class="scene-panel" aria-labelledby="locationTitle">
+          <div class="scene-heading">
+            <div>
+              <span class="location-number" id="locationNumber">Location 1 of 4</span>
+              <h2 id="locationTitle">Enchanted Garden</h2>
+            </div>
+            <div class="scene-counter">
+              <span aria-hidden="true">✦</span>
+              <strong><span id="locationFound">0</span> / 3</strong>
+              <small>found here</small>
+            </div>
+          </div>
+
+          <div class="scene-frame scene-garden" id="sceneFrame">
+            <div class="scene-light" aria-hidden="true"></div>
+            <div class="fireflies" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="scene-decor" id="sceneDecor" aria-hidden="true"></div>
+            <div class="object-layer" id="objectLayer" aria-label="Hidden-object scene"></div>
+            <div class="search-lens" id="searchLens" aria-hidden="true">
+              <span class="lens-glass"></span>
+              <span class="lens-handle"></span>
+              <span class="lens-sparkle">✦</span>
+            </div>
+
+            <div class="discovery-banner" id="discoveryBanner" aria-live="polite" hidden>
+              <span id="discoveryIcon" aria-hidden="true">☂️</span>
+              <strong id="discoveryWord">Umbrella</strong>
+              <small>Lost word recovered!</small>
+            </div>
+
+            <div class="scene-message" id="sceneMessage" aria-live="polite"></div>
+
+            <div class="location-complete" id="locationComplete" hidden>
+              <div class="location-complete-card">
+                <div class="complete-badge" id="completeBadge" aria-hidden="true">🌿</div>
+                <span>Location Complete</span>
+                <h3 id="completeTitle">Enchanted Garden Cleared!</h3>
+                <p>Objects Found: 3 / 3</p>
+                <strong>+250 Location Bonus</strong>
+                <button id="continueButton" type="button">Continue the Hunt →</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="scene-tip"><span aria-hidden="true">✧</span> Search carefully — only clearly wrong objects cost a heart.</p>
+        </section>
+
+        <aside class="hunt-sidebar">
+          <section class="clue-panel" aria-labelledby="clueTitle">
+            <div class="mascot" id="mascot" aria-hidden="true">
+              <span class="mascot-glass">🔎</span>
+              <span class="mascot-dog">🐶</span>
+            </div>
+            <div class="clue-copy">
+              <span class="panel-kicker">Current Clue</span>
+              <h2 id="clueTitle">What am I looking for?</h2>
+              <p id="clueText">Find something you use when it rains.</p>
+            </div>
+            <button class="hint-button" id="hintButton" type="button">
+              <span aria-hidden="true">💡</span>
+              <span>Hint</span>
+              <strong id="hintCount">3</strong>
+            </button>
+          </section>
+
+          <section class="collection-panel" aria-labelledby="collectionTitle">
+            <div class="collection-heading">
+              <div>
+                <span class="panel-kicker">Collection Book</span>
+                <h2 id="collectionTitle">Lost Word Collection</h2>
+              </div>
+              <span class="book-mark" aria-hidden="true">✦</span>
+            </div>
+            <div class="collection-grid" id="collectionGrid"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <section class="end-screen" id="endScreen" hidden aria-labelledby="endTitle">
+    <div class="end-card" id="endCard">
+      <div class="end-emblem" id="endEmblem" aria-hidden="true">🔎</div>
+      <span class="end-kicker" id="endKicker">Collection Restored</span>
+      <h2 id="endTitle">The Lost Words Are Found!</h2>
+      <p id="endMessage">You restored the Word Hunter Collection.</p>
+      <strong class="rank-title" id="rankTitle">Master Word Hunter</strong>
+
+      <div class="end-stats">
+        <div><span aria-hidden="true">🔎</span><small>Words Found</small><strong id="finalFound">12 / 12</strong></div>
+        <div><span aria-hidden="true">⭐</span><small>Final Score</small><strong id="finalScore">0</strong></div>
+        <div><span aria-hidden="true">🔥</span><small>Best Combo</small><strong id="finalCombo">x1</strong></div>
+        <div><span aria-hidden="true">💡</span><small>Hints Remaining</small><strong id="finalHints">3</strong></div>
+      </div>
+
+      <div class="end-actions">
+        <button class="restart-button" id="restartButton" type="button">↻ Play Again</button>
+        <a class="back-button" href="../../index.html">← Back to Games</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="instructionsModal" hidden role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeInstructions" type="button" aria-label="Закрыть инструкцию">×</button>
+      <div class="modal-emblem" aria-hidden="true">🐶🔎</div>
+      <span class="modal-kicker">Путеводитель охотника за словами</span>
+      <h2 id="instructionsTitle">Как играть</h2>
+      <p class="modal-story">Потерянные слова спрятаны по всей Волшебной долине.</p>
+      <ol>
+        <li><span>1</span>Прочитайте подсказку на английском языке.</li>
+        <li><span>2</span>Внимательно осмотрите всю волшебную сцену.</li>
+        <li><span>3</span>Нажмите на предмет, который подходит к подсказке.</li>
+        <li><span>4</span>Найденные слова попадают в книгу коллекции.</li>
+        <li><span>5</span>За неправильный предмет теряется одно сердце.</li>
+        <li><span>6</span>Собирайте серии правильных ответов и получайте дополнительные очки.</li>
+        <li><span>7</span>Используйте подсказку, если не можете найти предмет.</li>
+        <li><span>8</span>Найдите все 12 слов, чтобы завершить коллекцию.</li>
+      </ol>
+      <button class="start-button" id="startHuntButton" type="button">Начать поиск ✦</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

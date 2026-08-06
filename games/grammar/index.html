@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#27164d">
+  <title>Grammar Quest: Castle Run | Taita's English Envik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="game-page">
+    <header class="top-bar">
+      <a class="home-button" href="../../index.html" aria-label="Return to the games">
+        <span aria-hidden="true">←</span>
+        <span>Home</span>
+      </a>
+
+      <div class="game-brand" aria-label="Grammar Quest Castle Run">
+        <span class="brand-emblem" aria-hidden="true">✦</span>
+        <span class="brand-copy">
+          <strong>Grammar Quest</strong>
+          <small>Castle Run</small>
+        </span>
+      </div>
+
+      <div class="top-actions">
+        <button class="top-button" id="instructionsButton" type="button">
+          <span aria-hidden="true">?</span>
+          <span>Как играть</span>
+        </button>
+        <button class="top-button sound-button" id="soundButton" type="button" aria-pressed="true">
+          <span id="soundIcon" aria-hidden="true">🔊</span>
+          <span id="soundLabel">Sound ON</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="game-shell">
+      <section class="adventure-heading" aria-labelledby="gameTitle">
+        <span class="adventure-kicker">A2 Fantasy Adventure</span>
+        <h1 id="gameTitle">Grammar Quest <span>Castle Run</span></h1>
+        <p>Build grammar spells, open the ten magical gates and reach the moonlit castle.</p>
+      </section>
+
+      <section class="status-bar" aria-label="Adventure status">
+        <div class="status-item lives-status">
+          <span class="status-icon" aria-hidden="true">❤️</span>
+          <span class="status-copy">
+            <small>Lives</small>
+            <strong id="livesDisplay" aria-live="polite"></strong>
+          </span>
+        </div>
+        <div class="status-item crystal-status">
+          <span class="status-icon" aria-hidden="true">💎</span>
+          <span class="status-copy">
+            <small>Crystals</small>
+            <strong><span id="crystalCount">0</span> / 10</strong>
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon" aria-hidden="true">⭐</span>
+          <span class="status-copy">
+            <small>Score</small>
+            <strong id="scoreDisplay">0</strong>
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon" aria-hidden="true">🏰</span>
+          <span class="status-copy">
+            <small>Gate</small>
+            <strong><span id="gateNumber">1</span> / 10</strong>
+          </span>
+        </div>
+      </section>
+
+      <div class="game-stage">
+        <section class="world-panel" aria-labelledby="worldTitle">
+          <div class="world-panel-heading">
+            <div>
+              <span class="panel-eyebrow">The Enchanted Road</span>
+              <h2 id="worldTitle">Journey to the Royal Castle</h2>
+            </div>
+            <div class="world-legend" aria-hidden="true">
+              <span><i class="legend-dot current-dot"></i> Current</span>
+              <span><i class="legend-dot complete-dot"></i> Opened</span>
+            </div>
+          </div>
+
+          <div class="world-map" id="worldMap">
+            <span class="magic-particle particle-one" aria-hidden="true">✦</span>
+            <span class="magic-particle particle-two" aria-hidden="true">✧</span>
+            <span class="magic-particle particle-three" aria-hidden="true">✦</span>
+            <span class="magic-particle particle-four" aria-hidden="true">·</span>
+
+            <div class="distant-castle" aria-hidden="true">
+              <span class="castle-glow"></span>
+              <span class="castle-icon">🏰</span>
+              <small>Royal Castle</small>
+            </div>
+
+            <svg class="world-route" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true">
+              <path class="route-shadow" d="M 90 335 C 135 310 145 270 185 255 S 255 315 300 300 S 360 220 400 205 S 465 280 500 260 S 565 190 600 175 S 665 235 700 220 S 755 150 790 135 S 845 190 875 175 S 920 110 940 80"></path>
+              <path class="route-base" d="M 90 335 C 135 310 145 270 185 255 S 255 315 300 300 S 360 220 400 205 S 465 280 500 260 S 565 190 600 175 S 665 235 700 220 S 755 150 790 135 S 845 190 875 175 S 920 110 940 80"></path>
+              <path class="route-progress" id="routeProgress" pathLength="1" d="M 90 335 C 135 310 145 270 185 255 S 255 315 300 300 S 360 220 400 205 S 465 280 500 260 S 565 190 600 175 S 665 235 700 220 S 755 150 790 135 S 845 190 875 175 S 920 110 940 80"></path>
+            </svg>
+
+            <div class="route-nodes" id="routeNodes"></div>
+
+            <div class="player-token" id="playerToken" aria-label="Your explorer">
+              <span class="player-aura" aria-hidden="true"></span>
+              <span class="player-character" aria-hidden="true">🧙‍♀️</span>
+              <small>You</small>
+            </div>
+          </div>
+
+          <div class="location-banner" aria-live="polite">
+            <span id="locationIcon" aria-hidden="true">🌲</span>
+            <span>
+              <small>Current checkpoint</small>
+              <strong id="locationName">Enchanted Forest</strong>
+            </span>
+          </div>
+        </section>
+
+        <aside class="gate-panel" id="gatePanel" aria-labelledby="checkpointName">
+          <div class="gate-heading">
+            <div>
+              <span class="gate-label" id="gateLabel">Magical Gate 1</span>
+              <h2 id="checkpointName">Enchanted Forest</h2>
+            </div>
+            <div class="gate-seal" id="gateSeal" aria-hidden="true">
+              <span class="gate-runes">✦</span>
+              <span class="gate-lock" id="gateLock">🔒</span>
+            </div>
+          </div>
+
+          <p class="gate-instruction">Build the grammar spell to open this gate.</p>
+
+          <section class="tile-builder" aria-label="Sentence builder">
+            <div class="zone-heading">
+              <span>Word Bank</span>
+              <small>Drag or tap the tiles</small>
+            </div>
+            <div class="tile-zone word-bank" id="wordBank" data-zone="bank" aria-label="Word Bank"></div>
+
+            <div class="spell-divider" aria-hidden="true">
+              <span>✦</span>
+            </div>
+
+            <div class="zone-heading">
+              <span>Spell Line</span>
+              <small>Build one correct sentence</small>
+            </div>
+            <div class="tile-zone spell-line" id="spellLine" data-zone="spell" aria-label="Spell Line">
+              <span class="zone-placeholder" id="spellPlaceholder">Drop your spell here…</span>
+            </div>
+          </section>
+
+          <div class="spell-feedback" id="spellFeedback" aria-live="polite">
+            <span class="feedback-symbol" id="feedbackSymbol" aria-hidden="true">✧</span>
+            <span id="feedbackText">The gate is waiting for your spell.</span>
+          </div>
+
+          <div class="gate-actions">
+            <button class="reset-button" id="resetButton" type="button">
+              <span aria-hidden="true">↺</span>
+              Reset Tiles
+            </button>
+            <button class="open-gate-button" id="openGateButton" type="button" disabled>
+              <span>Open the Gate</span>
+              <span aria-hidden="true">✦</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <section class="end-screen" id="endScreen" hidden aria-labelledby="endTitle">
+    <div class="end-card" id="endCard">
+      <span class="end-sparkle sparkle-left" aria-hidden="true">✦</span>
+      <span class="end-sparkle sparkle-right" aria-hidden="true">✧</span>
+      <div class="end-emblem" id="endEmblem" aria-hidden="true">🏰</div>
+      <span class="end-kicker" id="endKicker">Adventure Complete</span>
+      <h2 id="endTitle">Castle Unlocked!</h2>
+      <p id="endMessage">You completed the Grammar Quest.</p>
+      <strong class="performance-title" id="performanceTitle">Perfect Spellcaster</strong>
+
+      <div class="end-stats">
+        <div><span aria-hidden="true">💎</span><small>Crystals</small><strong id="finalCrystals">10 / 10</strong></div>
+        <div><span aria-hidden="true">⭐</span><small>Final Score</small><strong id="finalScore">0</strong></div>
+        <div><span aria-hidden="true">❤️</span><small>Hearts Remaining</small><strong id="finalLives">3</strong></div>
+      </div>
+
+      <div class="end-actions">
+        <button class="play-again-button" id="restartButton" type="button">↻ Play Again</button>
+        <a class="back-games-button" href="../../index.html">← Back to Games</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="instructionsModal" hidden role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeInstructions" type="button" aria-label="Закрыть инструкцию">×</button>
+      <div class="modal-emblem" aria-hidden="true">🗝️</div>
+      <span class="modal-kicker">Путеводитель по приключению</span>
+      <h2 id="instructionsTitle">Как играть</h2>
+      <ol>
+        <li><span>1</span>Путешествуйте по волшебному миру.</li>
+        <li><span>2</span>Перетаскивайте слова в правильном порядке.</li>
+        <li><span>3</span>Составьте грамматическое заклинание на линии заклинаний.</li>
+        <li><span>4</span>Нажмите <strong>Open the Gate</strong>.</li>
+        <li><span>5</span>Правильные предложения открывают ворота и приносят кристаллы.</li>
+        <li><span>6</span>За неправильное предложение теряется одно сердце.</li>
+        <li><span>7</span>Соберите все 10 кристаллов и доберитесь до замка.</li>
+      </ol>
+      <button class="start-button" id="startAdventureButton" type="button">Начать приключение ✦</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
