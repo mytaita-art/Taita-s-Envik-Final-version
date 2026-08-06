@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061735">
+  <title>Taita's English Envik</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="showcase">
+    <h1 class="sr-only">Learn English Through Play</h1>
+
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true">
+      <span class="sound-icon" aria-hidden="true">🔊</span>
+      <span id="soundLabel">Sound On</span>
+    </button>
+
+    <section class="desktop-worlds" aria-label="Choose an English game">
+      <article class="world-zone grammar-zone">
+        <a class="world-link" href="games/grammar/index.html" aria-label="Play Grammar Quest"></a>
+      </article>
+
+      <article class="world-zone vocabulary-zone">
+        <a class="world-link" href="games/vocabulary/index.html" aria-label="Play Word Hunter"></a>
+      </article>
+
+      <article class="world-zone uk-zone">
+        <a class="world-link" href="games/uk/index.html" aria-label="Play Passport to the UK"></a>
+      </article>
+    </section>
+
+    <section class="mobile-showcase" aria-label="Choose an English game">
+      <div class="mobile-brand">
+        <div class="brand-mark">★</div>
+        <div><strong>Taita's</strong><span>English Envik</span></div>
+      </div>
+
+      <h2>Learn English<br><span>Through Play</span></h2>
+      <p>Pick a world and start your adventure.</p>
+
+      <div class="mobile-worlds">
+        <article class="mobile-card grammar-mobile">
+          <img src="images/grammar-card.png" alt="Magical Grammar Quest world">
+          <div class="mobile-card-copy">
+            <span>Adventure 01</span>
+            <h3>Grammar Quest</h3>
+            <p>Master the rules. Conquer the quest.</p>
+            <div class="mobile-actions">
+              <a href="games/grammar/index.html">Play now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mobile-card vocabulary-mobile">
+          <img src="images/vocabulary-card.png" alt="Word Hunter world">
+          <div class="mobile-card-copy">
+            <span>Adventure 02</span>
+            <h3>Word Hunter</h3>
+            <p>Find the words. Unlock the meaning.</p>
+            <div class="mobile-actions">
+              <a href="games/vocabulary/index.html">Play now</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mobile-card uk-mobile">
+          <img src="images/uk-card.png" alt="Passport to the UK world">
+          <div class="mobile-card-copy">
+            <span>Adventure 03</span>
+            <h3>Passport to the UK</h3>
+            <p>Explore the UK. Learn the language.</p>
+            <div class="mobile-actions">
+              <a href="games/uk/index.html">Play now</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="sound-effects.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
